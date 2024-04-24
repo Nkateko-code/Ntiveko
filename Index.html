@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Multiple-Choice Test</title>
+</head>
+<body>
+    <h1>Online Multiple-Choice Test</h1>
+
+    <form id="quizForm">
+        <h2>Question 1: What are the major roles of Data Link Layer (DLL) in an OSI model?</h2>
+        <input type="radio" name="q1" value="Detection & Correction of transmission errors">Detection & Correction of transmission errors<br>
+        <input type="radio" name="q1" value="IP routing">IP routing<br>
+        <input type="radio" name="q1" value="Gateway Allocator">Gateway Allocator<br>
+        <input type="radio" name="q1" value="Making sure frames are not generated">Making sure frames are not generated<br>
+
+        <h2>Question 2: What is the powerhouse of the cell?</h2>
+        <input type="radio" name="q2" value="Mitochondrion"> Mitochondrion<br>
+        <input type="radio" name="q2" value="Chloroplast"> Chloroplast<br>
+        <input type="radio" name="q2" value="Nucleus"> Nucleus<br>
+
+        <h2>Question 3: Which OSI layer allows the transmission and reception of data segments to a session layer
+            in addition to the provision of flow control, sequence numbering and message
+            acknowledgment?</h2>
+        <input type="radio" name="q3" value="Network Layer"> Network Layer<br>
+        <input type="radio" name="q3" value="Session Layer"> Session Layer<br>
+        <input type="radio" name="q3" value="Transport Layer"> Transport Layer<br>
+        <input type="radio" name="q3" value="Application Layer"> Application Layer<br>
+
+        <!-- Add more questions here -->
+        
+        <br>
+        <button type="button" onclick="gradeQuiz()">Submit</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+       function gradeQuiz() {
+    const answers = {
+        q1: "Detection & Correction of transmission errors",
+        q2: "Mitochondrion",
+        q3: "Transport Layer"
+        // Add more question answers here
+    }
+
+    let score = 0;
+
+    // Loop through each question
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+        const questionName = 'q' + i;
+        const selectedAnswer = document.querySelector('input[name="' + questionName + '"]:checked');
+
+        if (selectedAnswer) {
+            if (selectedAnswer.value === answers[questionName]) {
+                score++;
+            }
+        }
+    }
+
+    const totalQuestions = Object.keys(answers).length;
+    const resultPercentage = (score / totalQuestions) * 100;
+
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = `<h2>Quiz Results</h2>
+                             <p>Your score: ${score} out of ${totalQuestions}</p>
+                             <p>Percentage: ${resultPercentage}%</p>`;
+}
+
+    </script>
+</body>
+</html>
